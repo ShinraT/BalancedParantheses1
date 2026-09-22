@@ -11,15 +11,15 @@ class Balance
         {
 
             Console.Write("Enter '( )' or '[ ]' combination: ");
-            string _input = Console.ReadLine();
+            string s = Console.ReadLine();
 
-            Stack<char> _stack = new Stack<char>();
+            Stack<char> stack = new Stack<char>();
 
-            for (int i = 0; i < _input.Length; i++)
+            for (int i = 0; i < s.Length; i++)
             {
 
                 //Default case if it is not a valid input, we will break the loop and return 0
-                if (_input[i] != '(' && _input[i] != ')' && _input[i] != '[' && _input[i] != ']')
+                if (s[i] != '(' && s[i] != ')' && s[i] != '[' && s[i] != ']')
                 {
                     Console.WriteLine("Invalid input. Please enter only '(', ')', '[' or ']'.");
                     isBalanced = false;
@@ -28,39 +28,39 @@ class Balance
 
                 // Check if the _input variable is "(" 0r "["
                 //because we dont need to check if it is "]" or ")", 
-                if (_input[i] == '(' || _input[i] == '[')
+                if (s[i] == '(' || s[i] == '[')
                 {
-                    _stack.Push(_input[i]);
+                    stack.Push(s[i]);
                     continue;
                 }
 
                 // Only need to check with the further iterations if it is a right sided parantheses.
-                if (_input[i] == ')')
+                if (s[i] == ')')
                 {
-                    if (_stack.Count == 0 || _stack.Peek() != '(')
+                    if (stack.Count == 0 || stack.Peek() != '(')
                     {
                         isBalanced = false;
                         break;
                     }
                     //pop the stack to make it a clean slate for the next iteration
-                    _stack.Pop();
+                    stack.Pop();
                 }
 
                 // Only need to check with the further iterations if it is a right sided square bracket. 
-                if (_input[i] == ']')
+                if (s[i] == ']')
                 {
-                    if (_stack.Count == 0 || _stack.Peek() != '[')
+                    if (stack.Count == 0 || stack.Peek() != '[')
                     {
                         isBalanced = false;
                         break;
                     }
                     //pop the stack to make it a clean slate for the next iteration
-                    _stack.Pop();
+                    stack.Pop();
                 }
 
 
             }
-            if (_stack.Count > 0)
+            if (stack.Count > 0)
             {
                 isBalanced = false;
             }
