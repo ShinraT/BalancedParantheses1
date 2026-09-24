@@ -11,6 +11,12 @@ class Balance
         string s = Console.ReadLine();
 
         Stack<char> stack = new Stack<char>();
+        if(s.Length > 100)
+        {
+            isBalanced = false;
+            Console.WriteLine(isBalanced ? "1" : "0");
+            return;
+        }
 
         for (int i = 0; i < s.Length; i++)
         {
